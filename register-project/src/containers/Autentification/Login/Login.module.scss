@@ -1,0 +1,97 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+$color-primary: #4ba5fa;
+
+.login-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    width: 100%;
+
+    form {
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        box-shadow: 0 0 5px gray;
+        border-radius: 5%;
+        padding: 30px;
+
+        h3 {
+            align-self: center;
+            // font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin-bottom: 15px;
+            font-size: 2em;
+        }
+
+        .email,
+        .password {
+            margin: 10px 0;
+            height: 45px;
+            width: 400px;
+            padding-left: 5px;
+            border: 0;
+            box-shadow: 0 0 5px gray;
+            border-radius: 8px;
+            font-size: 1.2em;
+
+            &:focus {
+                outline: none;
+                box-shadow: 0 0 7px rgb(65, 137, 170);
+            }
+        }
+
+        .custom-control-custom-checkbox {
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            margin: 10px 0;
+            .custom-control-input {
+                width: 1.3em;
+                height: 1.3em;
+                margin-right: 5px;
+            }
+        }
+
+        button {
+            margin: 10px 0;
+            font-size: 1.2em;
+            height: 45px;
+            width: 415px;
+            background-color: $color-primary;
+            color: #ffffff;
+            border-color: $color-primary;
+            border-radius: 7px;
+            border: 0;
+        }
+
+        button:active,
+        button:focus {
+            outline: none;
+        }
+
+        button::-moz-focus-inner {
+            border: 0;
+        }
+        .error-message {
+            color: red;
+        }
+        .to-sign-up {
+            display: flex;
+            margin-top: 5px;
+            font-size: 0.9em;
+            justify-content: space-between; 
+    
+            .create-account-text-left {
+                align-self: flex-start;
+            }
+    
+            .forgot-password-text-right {
+                align-self: flex-end;
+            }
+        }
+    }
+}

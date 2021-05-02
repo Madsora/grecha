@@ -61,18 +61,15 @@ const Login = () => {
         >
           Submit
         </button>
-        { success===false &&
+        {success === false && (
           <p className={styles["error-message"]}>
             Email or password is incorrect!
           </p>
-        }
+        )}
 
         <div className={styles["to-sign-up"]}>
           <p className="create-account-text-left">
             Don't have an <Link to="/sign-up">account?</Link>
-          </p>
-          <p className="forgot-password-text-right">
-            Forgot <a href="#">password?</a>
           </p>
         </div>
       </form>

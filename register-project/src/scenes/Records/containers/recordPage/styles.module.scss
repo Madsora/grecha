@@ -1,0 +1,23 @@
+.pageContent {
+  width: 415px;
+  margin: 40px auto;
+  max-width: 80%;
+  border-radius: 20px;
+  box-shadow: 0 0 2px gray;
+  border-radius: 3%;
+  padding: 30px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.recordHeader {
+  align-self: center;
+  font-size: 20px;
+  margin-bottom: 5px;
+
+  &:last-of-type {
+    margin-top: 20px;
+  }
+}

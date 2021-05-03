@@ -1,24 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./Register.module.scss";
 
 const Register = () => {
-    // const [password, setPassword] = useState('');
-    // const [email, setEmail] = useState('');
+  // const [password, setPassword] = useState('');
+  // const [email, setEmail] = useState('');
 
+  // const handleSubmit = (e) => {
+  //     e.preventDefault()
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault()
+  //     this.props.history.push('/');
+  // }
 
-    //     this.props.history.push('/');
-    // }
+  // const handleChangeEmail = (e) => {
+  //     setEmail(e.target.value)
+  // }
 
-    // const handleChangeEmail = (e) => {
-    //     setEmail(e.target.value)
-    // }
-
-    // const handleChangePassword = (e) => {
-    //     setPassword(e.target.value)
-    // }
+  // const handleChangePassword = (e) => {
+  //     setPassword(e.target.value)
+  // }
   return (
     <div className={styles["login-page"]}>
       <form>

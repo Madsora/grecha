@@ -14,8 +14,8 @@ export const RecordPlaceOfStorage = {
 export const UserObligatoryField = {
   fullName: "fullName",
   taxNumber: "taxNumber",
-  placeOfBirth: "placeOfBirth",
   dateOfBirth: "dateOfBirth",
+  // placeOfBirth: "placeOfBirth",
   placeOfLiving: "placeOfLiving",
   placeOfStorage: "placeOfStorage",
   recordType: "recordType",

@@ -2,69 +2,119 @@ import React, { useState } from "react";
 import styles from "./Register.module.scss";
 
 const Register = () => {
-    // const [password, setPassword] = useState('');
-    // const [email, setEmail] = useState('');
+  const [name, setName] = useState("");
+  const [date, setDate] = useState("");
+  const [code, setCode] = useState("");
+  const [series, setSeries] = useState("");
+  const [passportNumber, setPassportNumber] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [address, setAddress] = useState("");
 
+  const handleChangeName = (e) => {
+    setName(e.target.value);
+  }
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault()
+  const handleChangeDate = (e) => {
+    setDate(e.target.value);
+  }
 
-    //     this.props.history.push('/');
-    // }
+  const handleChangeCode = (e) => {
+    setCode(e.target.value);
+  }
 
-    // const handleChangeEmail = (e) => {
-    //     setEmail(e.target.value)
-    // }
+  const handleChangeSeries = (e) => {
+    setSeries(e.target.value);
+  }
 
-    // const handleChangePassword = (e) => {
-    //     setPassword(e.target.value)
-    // }
+  const handleChangePassportNumber = (e) => {
+    setPassportNumber(e.target.value);
+  }
+
+  const handleChangeEmail = (e) => {
+    setEmail(e.target.value);
+  }
+
+  const handleChangePassword = (e) => {
+    setPassword(e.target.value);
+  }
+
+  const handleChangeAddress = (e) => {
+    setAddress(e.target.value);
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  }
+
   return (
-    <div className={styles["login-page"]}>
+    <div className={styles["form-page-wrapper"]}>
       <form>
         <h3>Sign Up</h3>
-        {/* <input
+
+        <input
+          type="text"
+          className={styles["form-control"]}
+          value={name}
+          placeholder="ФІО Реєстратора"
+          onChange={(e) => handleChangeName(e)}
+        />
+        <input
+          type="date"
+          className={styles["form-control"]}
+          value={date}
+          placeholder="Дата народження"
+          onChange={(e) => handleChangeDate(e)}
+        />
+        <input
+          type="number"
+          className={styles["form-control"]}
+          value={code}
+          placeholder="Ідентифікаційний код"
+          onChange={(e) => handleChangeCode(e)}
+        />
+        <input
+          type="text"
+          className={styles["form-control"]}
+          value={series}
+          placeholder="Серія паспорта"
+          onChange={(e) => handleChangeSeries(e)}
+        />
+        <input
+          type="number"
+          className={styles["form-control"]}
+          value={passportNumber}
+          placeholder="Номер паспорта"
+          onChange={(e) => handleChangePassportNumber(e)}
+        />
+        <input
           type="email"
+          className={styles["form-control"]}
           value={email}
-          className={styles.email}
-          placeholder="Enter email"
+          placeholder="Email"
           onChange={(e) => handleChangeEmail(e)}
         />
         <input
           type="password"
+          className={styles["form-control"]}
           value={password}
-          className={styles.password}
-          placeholder="Enter password"
+          placeholder="Пароль"
           onChange={(e) => handleChangePassword(e)}
         />
-
-        <div className={styles["custom-control-custom-checkbox"]}>
-          <input
-            type="checkbox"
-            className="custom-control-input"
-            id="customCheck1"
-          />
-          <label className="custom-control-label" htmlFor="customCheck1">
-            Remember me
-          </label>
-        </div>
+        <input
+          type="text"
+          className={styles["form-control"]}
+          value={address}
+          placeholder="Адреса реєстратора"
+          onChange={(e) => handleChangeAddress(e)}
+        />
 
         <button
           onClick={(e) => handleSubmit(e)}
-          type="submit"
           className="btn btn-primary btn-block"
         >
-          Submit
+          Sign Up
         </button>
-
-        <div className={styles["to-sign-up"]}>
-          <p className="create-account-text-left">
-            Don't have an <Link to="/sign-up">account?</Link>
-          </p>
-          <p className="forgot-password-text-right">
-            Forgot <a href="#">password?</a>
-          </p>
-        </div> */}
       </form>
     </div>
   );

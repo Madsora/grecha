@@ -1,0 +1,79 @@
+$color-primary: #4ba5fa;
+
+.form-page-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    box-shadow: 0 0 5px gray;
+    border-radius: 5%;
+    padding: 30px;
+
+    form {
+        display: flex;
+        flex-direction: column;
+        padding: 30px;
+        background-color: #ffffff;
+        border-radius: 25px;
+
+        h3 {
+            align-self: center;
+            margin-bottom: 15px;
+            font-size: 2em;
+        }
+
+        .form-control {
+            margin: 10px 0;
+            height: 45px;
+            width: 400px;
+            padding-left: 5px;
+            border-width: 0;
+            box-shadow: 0 0 5px gray;
+            border-radius: 8px;
+            font-size: 1.2em;
+
+            &:focus {
+                outline: none;
+                box-shadow: 0 0 7px rgb(65, 137, 170);
+            }
+        }
+
+        .custom-control-custom-checkbox {
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .role-buttons {
+            display: flex;
+            justify-content: space-between;
+
+            button {
+                font-size: 1.2em;
+                height: 45px;
+                width: 250px;
+                margin: 10px 20px 0 0;
+            }
+
+        }
+
+        button {
+            margin: 10px 0;
+            font-size: 1.2em;
+            height: 45px;
+            width: 415px;
+            background-color: $color-primary;
+            color: #ffffff;
+            border-color: $color-primary;
+            border-radius: 7px;
+            border: 0;
+        }
+
+        button:active,
+        button:focus {
+            outline: none;
+        }
+
+        button::-moz-focus-inner {
+            border: 0;
+        }
+    }
+}

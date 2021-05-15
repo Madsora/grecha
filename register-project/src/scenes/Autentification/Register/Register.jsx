@@ -1,8 +1,7 @@
-import React from "react";
+import React, {useState} from "react";
 import styles from "./Register.module.scss";
 
 const Register = () => {
-<<<<<<< HEAD:register-project/src/containers/Autentification/Register/Register.jsx
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
   const [code, setCode] = useState("");
@@ -48,24 +47,6 @@ const Register = () => {
     e.preventDefault();
   }
 
-=======
-  // const [password, setPassword] = useState('');
-  // const [email, setEmail] = useState('');
-
-  // const handleSubmit = (e) => {
-  //     e.preventDefault()
-
-  //     this.props.history.push('/');
-  // }
-
-  // const handleChangeEmail = (e) => {
-  //     setEmail(e.target.value)
-  // }
-
-  // const handleChangePassword = (e) => {
-  //     setPassword(e.target.value)
-  // }
->>>>>>> master:register-project/src/scenes/Autentification/Register/Register.jsx
   return (
     <div className={styles["form-page-wrapper"]}>
       <form>

@@ -4,6 +4,7 @@ import Login from "./scenes/Autentification/Login/Login";
 import Register from "./scenes/Autentification/Register/Register";
 import RecordScene from "./scenes/Records";
 import Header from "./containers/Header";
+import Footer from "./containers/Footer/Footer";
 
 import "./App.css";
 
@@ -18,6 +19,7 @@ function App() {
           <Route path="/records" component={RecordScene} />
         </Switch>
       </header>
+      <Footer />
     </div>
   );
 }

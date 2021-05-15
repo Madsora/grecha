@@ -1,7 +1,9 @@
 .page-wrp {
-    display: flex;
-    height: 90vh;
-    flex-direction: column;
-    align-items: flex-start;
-    background-color: aqua;
-  }
+  display: flex;
+  margin: auto;
+  height: 90vh;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

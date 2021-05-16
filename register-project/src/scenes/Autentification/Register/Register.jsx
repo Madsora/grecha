@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import styles from "./Register.module.scss";
 
-import { usersData } from "store/data";
+import { addUser } from "store/data";
 import { useHistory } from "react-router-dom";
 
 
@@ -51,7 +51,7 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    usersData.push({
+    addUser({
       name,
       date,
       code,
@@ -60,14 +60,14 @@ const Register = () => {
       email,
       password,
       address
-    })
-    history.push('/records/')
+    });
+    history.push('/sign-in/')
   }
 
   return (
     <div className={styles["form-page-wrapper"]}>
       <form>
-        <h3>Sign Up</h3>
+        <h3>Реєстрація</h3>
 
         <input
           type="text"
@@ -130,7 +130,7 @@ const Register = () => {
           onClick={(e) => handleSubmit(e)}
           className="btn btn-primary btn-block"
         >
-          Sign Up
+          Зареєструвати
         </button>
       </form>
     </div>

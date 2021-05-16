@@ -1,17 +1,26 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import styles from "./Login.module.scss";
+import { usersData, setCurrentUser } from "store/data";
 
 const Login = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [success, setSuccess] = useState(null);
+  const [incorrect, setIsIncorrect] = useState(false);
+  let history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSuccess(false);
-    // отправим запрос
-    //   this.props.history.push("/");
+    let user = usersData.find(
+      (x) => x.password === password && x.email === email
+    );
+    if (user) {
+      setIsIncorrect(false);
+      setCurrentUser(user);
+      history.push("/records/");
+    } else {
+      setIsIncorrect(true);
+    }
   };
 
   const handleChangeEmail = (e) => {
@@ -24,19 +33,19 @@ const Login = () => {
   return (
     <div className={styles["login-page"]}>
       <form>
-        <h3>Sign In</h3>
+        <h3>Авторизація</h3>
         <input
           type="email"
           value={email}
           className={styles.email}
-          placeholder="Enter email"
+          placeholder="Введіть email"
           onChange={(e) => handleChangeEmail(e)}
         />
         <input
           type="password"
           value={password}
           className={styles.password}
-          placeholder="Enter password"
+          placeholder="Введіть пароль"
           onChange={(e) => handleChangePassword(e)}
         />
 
@@ -50,7 +59,7 @@ const Login = () => {
             className={styles["custom-control-label"]}
             htmlFor="customCheck1"
           >
-            Remember me
+            Запам'ятати мене
           </label>
         </div>
 
@@ -59,19 +68,13 @@ const Login = () => {
           type="submit"
           className="btn btn-primary btn-block"
         >
-          Submit
+          Увійти
         </button>
-        {success === false && (
+        {incorrect === true && (
           <p className={styles["error-message"]}>
-            Email or password is incorrect!
+            Пароль або email введені некоректно!
           </p>
         )}
-
-        <div className={styles["to-sign-up"]}>
-          <p className="create-account-text-left">
-            Don't have an <Link to="/sign-up">account?</Link>
-          </p>
-        </div>
       </form>
     </div>
   );

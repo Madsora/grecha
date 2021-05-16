@@ -1,1 +1,3 @@
-export const usersData = [{}, {}];
+export const usersData = [];
+
+export const currentUser = {}

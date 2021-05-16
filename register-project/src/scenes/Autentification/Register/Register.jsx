@@ -1,6 +1,10 @@
 import React, {useState} from "react";
 import styles from "./Register.module.scss";
 
+import { usersData } from "store/data";
+import { useHistory } from "react-router-dom";
+
+
 const Register = () => {
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
@@ -10,6 +14,8 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [address, setAddress] = useState("");
+  let history = useHistory();
+
 
   const handleChangeName = (e) => {
     setName(e.target.value);
@@ -45,6 +51,17 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    usersData.push({
+      name,
+      date,
+      code,
+      series,
+      passportNumber,
+      email,
+      password,
+      address
+    })
+    history.push('/records/')
   }
 
   return (

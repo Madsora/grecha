@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 
-import ReacordCreatePage from "./containers/createRecord";
+import RecordCreatePage from "./containers/createRecord";
 import RecordPage from "./containers/recordPage";
 import RecordsPage from "./containers/recordsPage";
 
@@ -11,7 +11,7 @@ const RecordsScene = () => {
   return (
     <Switch>
       <Route path={`${path}`} component={RecordsPage} exact />
-      <Route path={`${path}/create`} component={ReacordCreatePage} />
+      <Route path={`${path}/create`} component={RecordCreatePage} />
       <Route path={`${path}/:id`} component={RecordPage} exact />
     </Switch>
   );

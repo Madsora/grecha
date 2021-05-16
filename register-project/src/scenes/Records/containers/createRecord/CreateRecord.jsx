@@ -10,6 +10,7 @@ import {
 import { recordsData } from "store/data";
 import { INITIAL_STATE } from "./common";
 import styles from "./styles.module.scss";
+import { Button } from "react-bootstrap";
 
 const CreateRecord = () => {
   const [formState, setFormState] = useState(INITIAL_STATE);
@@ -35,8 +36,11 @@ const CreateRecord = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("SUBMIT");
     const areEmptyFields = Object.values(UserObligatoryField).some(
-      (obligatoryField) => !formState[obligatoryField]
+      (obligatoryField) =>
+        !formState[obligatoryField] &&
+        obligatoryField !== UserObligatoryField.id
     );
 
     if (areEmptyFields) {
@@ -122,9 +126,12 @@ const CreateRecord = () => {
             formState.recordType === RecordType.COUPLE_AGREEMENT ||
             formState.recordType === RecordType.AGREEMENT
           );
+        const shouldIgnoreId = fieldName === UserField.id;
 
         const shouldIgnoreInput =
-          fieldName === UserField.placeOfBirth || shouldIgnoreCertifiedByField;
+          fieldName === UserField.placeOfBirth ||
+          shouldIgnoreCertifiedByField ||
+          shouldIgnoreId;
 
         if (shouldIgnoreInput) return null;
         if (isDateInput) return createDateInput(fieldName);
@@ -146,9 +153,12 @@ const CreateRecord = () => {
       </h4>
       {renderFields(true)}
 
-      <button type="submit" className={styles.button}>
+      <Button variant="primary" className={styles.button} type="submit">
         Створити
-      </button>
+      </Button>
+      {/* <button type="submit" className={styles.button}>
+        Створити
+      </button> */}
     </form>
   );
 };

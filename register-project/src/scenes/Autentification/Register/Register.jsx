@@ -1,9 +1,8 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styles from "./Register.module.scss";
 
 import { addUser } from "store/data";
 import { useHistory } from "react-router-dom";
-
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -16,38 +15,37 @@ const Register = () => {
   const [address, setAddress] = useState("");
   let history = useHistory();
 
-
   const handleChangeName = (e) => {
     setName(e.target.value);
-  }
+  };
 
   const handleChangeDate = (e) => {
     setDate(e.target.value);
-  }
+  };
 
   const handleChangeCode = (e) => {
     setCode(e.target.value);
-  }
+  };
 
   const handleChangeSeries = (e) => {
     setSeries(e.target.value);
-  }
+  };
 
   const handleChangePassportNumber = (e) => {
     setPassportNumber(e.target.value);
-  }
+  };
 
   const handleChangeEmail = (e) => {
     setEmail(e.target.value);
-  }
+  };
 
   const handleChangePassword = (e) => {
     setPassword(e.target.value);
-  }
+  };
 
   const handleChangeAddress = (e) => {
     setAddress(e.target.value);
-  }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -59,10 +57,10 @@ const Register = () => {
       passportNumber,
       email,
       password,
-      address
+      address,
     });
-    history.push('/sign-in/')
-  }
+    history.push("/sign-in");
+  };
 
   return (
     <div className={styles["form-page-wrapper"]}>

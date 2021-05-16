@@ -7,3 +7,12 @@
   align-items: center;
   justify-content: center;
 }
+
+.buttonsWrapper {
+  display: flex;
+  margin: 20px 0;
+
+  button:first-of-type {
+    margin-right: 20px;
+  }
+}

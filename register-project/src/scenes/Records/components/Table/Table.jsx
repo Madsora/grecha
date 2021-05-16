@@ -1,11 +1,9 @@
 import React from "react";
-import { useRecordsContext } from "store/recordsProvider";
 import ReactTable from "react-table-v6";
 import "react-table-v6/react-table.css";
 import { Link } from "react-router-dom";
 
-const Table = () => {
-  const { recordsData } = useRecordsContext();
+const Table = ({ recordsData }) => {
   const columns = [
     {
       id: "fullName",
@@ -49,6 +47,7 @@ const Table = () => {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
+        marginBottom: "40px",
       }}
       className="-striped -highlight"
     />

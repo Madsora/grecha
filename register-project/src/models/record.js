@@ -35,6 +35,12 @@ export const UserField = {
   ...UserOptionalField,
 };
 
+export const RecordSearchField = {
+  [UserObligatoryField.fullName]: UserObligatoryField.fullName,
+  [UserObligatoryField.taxNumber]: UserObligatoryField.taxNumber,
+  [UserObligatoryField.dateOfBirth]: UserObligatoryField.dateOfBirth,
+};
+
 export const UserFieldToLabel = {
   [UserField.fullName]: "ПІБ",
   [UserField.taxNumber]: "Подтаковий номер",

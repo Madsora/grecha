@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 import {
   UserFieldToLabel,
@@ -17,6 +17,7 @@ const MOCK_LOADING_TIME = 1000;
 
 const RecordPage = () => {
   const { id } = useParams();
+  let history = useHistory()
   const { recordsData } = useRecordsContext();
   const record = recordsData[id];
 
@@ -232,9 +233,15 @@ const RecordPage = () => {
             </Button>
           </>
         ) : (
-          <Button variant="primary" onClick={() => setUpdateMode(true)}>
-            Змінити дані
-          </Button>
+          <>
+            <Button variant="primary" onClick={() => setUpdateMode(true)}>
+              Змінити дані
+            </Button>
+
+            <Button variant="secondary" onClick={() => history.push("/records/")}>
+              Назад
+            </Button>
+          </>
         )}
       </div>
     </div>

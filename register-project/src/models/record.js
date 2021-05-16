@@ -12,6 +12,7 @@ export const RecordPlaceOfStorage = {
 };
 
 export const UserObligatoryField = {
+  id: "id",
   fullName: "fullName",
   taxNumber: "taxNumber",
   dateOfBirth: "dateOfBirth",

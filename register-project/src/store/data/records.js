@@ -2,6 +2,7 @@ import { RecordPlaceOfStorage, RecordType, UserField } from "models";
 
 export const recordsData = [
   {
+    [UserField.id]: 0,
     [UserField.fullName]: "Клименко Ярослав",
     [UserField.taxNumber]: "2863454",
     [UserField.placeOfLiving]: "Київ, провулок Ковальский 5",

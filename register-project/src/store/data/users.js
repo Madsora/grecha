@@ -8,4 +8,8 @@ export const setCurrentUser = (user) => {
     currentUser = user;
 }
 
-export let currentUser = {}
+export const removeCurrentUser = () => {
+    currentUser = {};
+}
+
+export let currentUser = {};

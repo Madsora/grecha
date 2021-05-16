@@ -2,7 +2,6 @@ import React from "react";
 import { recordsData } from "store/data";
 import ReactTable from "react-table-v6";
 import "react-table-v6/react-table.css";
-import styles from "./styles.module.scss";
 import { Link } from "react-router-dom";
 
 const Table = () => {
@@ -45,7 +44,7 @@ const Table = () => {
       width="80%"
       noDataText="No Results"
       style={{
-        height: "600px", // This will force the table body to overflow and scroll, since there is not enough room
+        height: "600px",
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center'

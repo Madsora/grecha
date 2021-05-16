@@ -1,17 +1,22 @@
-import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
-import { currentUser } from "store/data";
+import { useAuthContext } from "store/authProvider";
 
-const AuthWrapper = ({ children }) => {
+const AuthWrapper = ({ children, role, fallback }) => {
   const history = useHistory();
-  const [isRedirect, setRedirect] = useState(false);
+  const { currentUser } = useAuthContext();
+  console.log(currentUser);
 
-  useEffect(() => {
-    setRedirect(!!currentUser);
-  }, []);
+  if (!currentUser) {
+    console.log("no user");
+    history.push("/sign-in");
+    return null;
+  }
 
-  if (isRedirect) {
-    return history.push("/sign-in");
+  if (currentUser.role !== role) {
+    console.log("no role");
+
+    history.push(fallback);
+    return null;
   }
 
   return children;

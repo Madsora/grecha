@@ -4,16 +4,19 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { AuthContextProvider } from "./store/authProvider";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'react-toastify/dist/ReactToastify.css';
+import { RecordsContextProvider } from "./store/recordsProvider";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "react-toastify/dist/ReactToastify.css";
 
 import "./index.css";
 
 ReactDOM.render(
   <BrowserRouter>
-    <AuthContextProvider>
-      <App />
-    </AuthContextProvider>
+    <RecordsContextProvider>
+      <AuthContextProvider>
+        <App />
+      </AuthContextProvider>
+    </RecordsContextProvider>
   </BrowserRouter>,
   document.getElementById("root")
 );

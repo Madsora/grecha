@@ -2,11 +2,12 @@ import React from "react";
 import { Nav, Navbar, Button } from "react-bootstrap";
 
 import styles from "./styles.module.scss";
-import { currentUser, removeCurrentUser } from "store/data";
+import { useAuthContext } from "store/authProvider";
 import { useHistory } from "react-router-dom";
 
 const Header = () => {
   let history = useHistory();
+  const { removeCurrentUser, currentUser } = useAuthContext();
 
   const handleLogOut = () => {
     removeCurrentUser();
@@ -15,7 +16,7 @@ const Header = () => {
 
   const handleAddRecord = () => {
     // add link
-    history.push("/create-record/");
+    history.push("/records/create");
   };
 
   return (

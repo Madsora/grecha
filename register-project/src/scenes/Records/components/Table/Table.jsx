@@ -1,17 +1,18 @@
 import React from "react";
-import { recordsData } from "store/data";
+import { useRecordsContext } from "store/recordsProvider";
 import ReactTable from "react-table-v6";
 import "react-table-v6/react-table.css";
 import { Link } from "react-router-dom";
 
 const Table = () => {
+  const { recordsData } = useRecordsContext();
   const columns = [
     {
       id: "fullName",
       Header: "ФІО Заповідача",
-      accessor: ({id, fullName}) => (
+      accessor: ({ id, fullName }) => (
         <Link className="gh-tc-redirect" to={`/records/${id}`}>
-        {fullName}
+          {fullName}
         </Link>
       ),
       width: 250,
@@ -45,9 +46,9 @@ const Table = () => {
       noDataText="No Results"
       style={{
         height: "600px",
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center'
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
       }}
       className="-striped -highlight"
     />

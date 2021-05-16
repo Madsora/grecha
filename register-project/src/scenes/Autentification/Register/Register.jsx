@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import styles from "./Register.module.scss";
 import { toast, ToastContainer } from "react-toastify";
+import { useAuthContext } from "store/authProvider";
 import "react-toastify/dist/ReactToastify.css";
-import { addUser } from "store/data";
 
-<<<<<<< HEAD
-=======
 toast.configure();
 
->>>>>>> d95fd7de96a8f5f023a93c557349f7061d0a28df
 const Register = () => {
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
@@ -18,10 +15,7 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [address, setAddress] = useState("");
-<<<<<<< HEAD
-  let history = useHistory();
-=======
->>>>>>> d95fd7de96a8f5f023a93c557349f7061d0a28df
+  const { addUser } = useAuthContext();
 
   const handleChangeName = (e) => {
     setName(e.target.value);
@@ -61,7 +55,7 @@ const Register = () => {
       autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: false,
-      closeButton: false
+      closeButton: false,
     });
     e.preventDefault();
     addUser({

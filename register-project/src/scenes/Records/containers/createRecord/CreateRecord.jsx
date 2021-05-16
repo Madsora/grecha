@@ -7,7 +7,7 @@ import {
   UserObligatoryField,
   UserOptionalField,
 } from "models";
-import { recordsData } from "store/data";
+import { useRecordsContext } from "store/recordsProvider";
 import { INITIAL_STATE } from "./common";
 import styles from "./styles.module.scss";
 import { Button } from "react-bootstrap";
@@ -16,6 +16,7 @@ const CreateRecord = () => {
   const [formState, setFormState] = useState(INITIAL_STATE);
   const [isShowError, setShowError] = useState(false);
   const history = useHistory();
+  const { recordsData } = useRecordsContext();
 
   const changeFormState = (e) => {
     const { name, value } = e.target;

@@ -1,18 +1,50 @@
 import React, { useContext, useState } from "react";
 
+const usersInitialData = [
+  {
+    id: 0,
+    name: "Admin User",
+    password: "12345",
+    email: "admin@gmail.com",
+    role: "admin",
+  },
+  {
+    id: 0,
+    name: "Registrator User",
+    password: "12345",
+    email: "reg@g.com",
+    role: "registrator",
+  },
+];
+
 const AuthContext = React.createContext({
-  user: null,
-  setUser: () => {},
+  usersData: usersInitialData,
+  currentUser: null,
+  setCurrentUser: () => {},
+  addUser: () => {},
 });
 
 const useAuthContext = () => useContext(AuthContext);
 
 const useProvideAuthContext = () => {
-  const [user, setUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [usersData, setUsersData] = useState(usersInitialData);
+
+  const addUser = (data) => {
+    data.role = "registrator";
+    setUsersData([...usersData, data]);
+  };
+
+  const removeCurrentUser = () => {
+    setCurrentUser(null);
+  };
 
   return {
-    user,
-    setUser,
+    currentUser,
+    usersData,
+    setCurrentUser,
+    addUser,
+    removeCurrentUser,
   };
 };
 

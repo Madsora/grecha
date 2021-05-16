@@ -15,10 +15,22 @@ function App() {
       <Header />
       <Switch>
         <Route path="/sign-in" component={Login} />
-        <AuthWrapper>
-          <Route path="/sign-up" component={Register} />
-          <Route path="/records" component={RecordScene} />
-        </AuthWrapper>
+        <Route
+          path="/sign-up"
+          component={() => (
+            <AuthWrapper role="admin" fallback="/sign-up">
+              <Register />
+            </AuthWrapper>
+          )}
+        />
+        <Route
+          path="/records"
+          component={() => (
+            <AuthWrapper role="registrator" fallback="/records">
+              <RecordScene />
+            </AuthWrapper>
+          )}
+        />
       </Switch>
       <Footer />
     </div>

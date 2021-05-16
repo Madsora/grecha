@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { useAuthContext } from "store/authProvider";
 import styles from "./Login.module.scss";
-import { usersData, setCurrentUser } from "store/data";
 
 const Login = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [incorrect, setIsIncorrect] = useState(false);
   let history = useHistory();
+  const { usersData, setCurrentUser } = useAuthContext();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,11 +18,9 @@ const Login = () => {
     if (user) {
       setIsIncorrect(false);
       setCurrentUser(user);
-      if(user.role === "admin") 
-      {
+      if (user.role === "admin") {
         history.push("/sign-up/");
-      }
-      else {
+      } else {
         history.push("/records/");
       }
     } else {

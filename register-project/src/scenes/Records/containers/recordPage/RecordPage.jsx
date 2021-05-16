@@ -8,9 +8,8 @@ import {
   UserOptionalField,
   RecordType,
 } from "models";
-import { recordsData } from "store/data";
 import { RecordField } from "../../components";
-
+import { useRecordsContext } from "store/recordsProvider";
 import styles from "./styles.module.scss";
 import { Button } from "react-bootstrap";
 
@@ -18,7 +17,7 @@ const MOCK_LOADING_TIME = 1000;
 
 const RecordPage = () => {
   const { id } = useParams();
-
+  const { recordsData } = useRecordsContext();
   const record = recordsData[id];
 
   const [isLoading, setLoading] = useState(false);

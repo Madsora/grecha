@@ -37,7 +37,6 @@ const CreateRecord = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("SUBMIT");
     const areEmptyFields = Object.values(UserObligatoryField).some(
       (obligatoryField) =>
         !formState[obligatoryField] &&
@@ -48,8 +47,15 @@ const CreateRecord = () => {
       setShowError(true);
       return;
     }
-    recordsData.push(formState);
-    history.push(`/records/${recordsData.length - 1}`);
+    let leastId = 0;
+    recordsData.forEach((record) => (leastId = Math.max(leastId, record.id)));
+
+    recordsData.push({
+      ...formState,
+      id: leastId + 1,
+    });
+
+    history.push(`/records`);
   };
 
   const errorLabel = () => (

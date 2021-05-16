@@ -17,7 +17,13 @@ const Login = () => {
     if (user) {
       setIsIncorrect(false);
       setCurrentUser(user);
-      history.push("/records/");
+      if(user.role === "admin") 
+      {
+        history.push("/sign-up/");
+      }
+      else {
+        history.push("/records/");
+      }
     } else {
       setIsIncorrect(true);
     }

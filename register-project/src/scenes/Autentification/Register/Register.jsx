@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import styles from "./Register.module.scss";
-
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { addUser } from "store/data";
-import { useHistory } from "react-router-dom";
 
+<<<<<<< HEAD
+=======
+toast.configure();
+
+>>>>>>> d95fd7de96a8f5f023a93c557349f7061d0a28df
 const Register = () => {
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
@@ -13,7 +18,10 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [address, setAddress] = useState("");
+<<<<<<< HEAD
   let history = useHistory();
+=======
+>>>>>>> d95fd7de96a8f5f023a93c557349f7061d0a28df
 
   const handleChangeName = (e) => {
     setName(e.target.value);
@@ -48,6 +56,13 @@ const Register = () => {
   };
 
   const handleSubmit = (e) => {
+    toast.success("Створено нового реєстратора!", {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      closeButton: false
+    });
     e.preventDefault();
     addUser({
       name,
@@ -59,13 +74,12 @@ const Register = () => {
       password,
       address,
     });
-    history.push("/sign-in");
   };
 
   return (
     <div className={styles["form-page-wrapper"]}>
       <form>
-        <h3>Реєстрація</h3>
+        <h3>Реєстрація Реєстратора</h3>
 
         <input
           type="text"
@@ -130,6 +144,7 @@ const Register = () => {
         >
           Зареєструвати
         </button>
+        <ToastContainer />
       </form>
     </div>
   );

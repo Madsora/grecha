@@ -1,28 +1,47 @@
 import React from "react";
 import { Nav, Navbar, Button } from "react-bootstrap";
-import { useLocation } from "react-router-dom";
 
 import styles from "./styles.module.scss";
+import { currentUser, removeCurrentUser } from "store/data";
+import { useHistory } from "react-router-dom";
 
 const Header = () => {
-  const { pathname } = useLocation();
+  let history = useHistory();
+
+  const handleLogOut = () => {
+    removeCurrentUser();
+    history.push("/sign-in/");
+  };
+
+  const handleAddRecord = () => {
+    // add link
+    history.push("/create-record/");
+  };
+
   return (
     <Navbar
       className={`bg-dark justify-content-between ${styles.navigation}`}
       variant="dark"
     >
       <Navbar.Brand className="p-0">ДЕРЖАВНИЙ СПАДКОВИЙ РЕЄСТР</Navbar.Brand>
-      {!pathname.includes("sign-in") && (
-        <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
+      <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
+        {currentUser && (
           <Nav>
-            <Button className="mr-2" variant="primary">
+            <Button
+              onClick={handleAddRecord}
+              className="mr-2"
+              variant="primary"
+            >
               Додати відомість
             </Button>
-            <Button variant="primary">Вийти</Button>
+            <Button onClick={handleLogOut} variant="primary">
+              Вийти
+            </Button>
           </Nav>
-        </Navbar.Collapse>
-      )}
+        )}
+      </Navbar.Collapse>
     </Navbar>
   );
 };
+
 export default Header;

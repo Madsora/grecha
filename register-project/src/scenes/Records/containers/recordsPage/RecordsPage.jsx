@@ -52,6 +52,8 @@ const RecordsPage = () => {
     })
     .filter((r) => r);
 
+  const isHideData = !Object.values(filters).some((f) => f);
+
   return (
     <div className={styles["page-wrp"]}>
       <div className={styles.buttonsWrapper}>
@@ -69,7 +71,7 @@ const RecordsPage = () => {
         setFilters={setFilters}
         onHide={() => setShowModal(false)}
       />
-      <Table recordsData={filteredRecords} />
+      <Table recordsData={isHideData ? [] : filteredRecords} />
     </div>
   );
 };

@@ -41,7 +41,7 @@ const Table = ({ recordsData }) => {
       columns={columns}
       defaultPageSize={10}
       width="80%"
-      noDataText="No Results"
+      noDataText="Немає результатів, перевірте коректність даних для фільтрування"
       style={{
         height: "600px",
         display: "flex",

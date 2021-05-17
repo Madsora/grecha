@@ -24,29 +24,28 @@ const RecordsPage = () => {
       if (!Object.values(filters).some((f) => f)) {
         return record;
       }
-
       const fullnameCheck =
-        filters[UserObligatoryField.fullName] &&
+        !filters[UserObligatoryField.fullName] ||
         record[UserObligatoryField.fullName].includes(
           filters[UserObligatoryField.fullName]
         );
 
       const taxCheck =
-        filters[UserObligatoryField.taxNumber] &&
+        !filters[UserObligatoryField.taxNumber] ||
         record[UserObligatoryField.taxNumber].includes(
           filters[UserObligatoryField.taxNumber]
         );
 
       const dateCheck =
-        filters[UserObligatoryField.dateOfBirth] &&
-        record.dateOfBirth.getFullYear() ===
+        !filters[UserObligatoryField.dateOfBirth] ||
+        (record.dateOfBirth.getFullYear() ===
           filters[UserObligatoryField.dateOfBirth].getFullYear() &&
-        record.dateOfBirth.getMonth() ===
-          filters[UserObligatoryField.dateOfBirth].getMonth() &&
-        record.dateOfBirth.getDate() ===
-          filters[UserObligatoryField.dateOfBirth].getDate();
+          record.dateOfBirth.getMonth() ===
+            filters[UserObligatoryField.dateOfBirth].getMonth() &&
+          record.dateOfBirth.getDate() ===
+            filters[UserObligatoryField.dateOfBirth].getDate());
 
-      const hasPassed = fullnameCheck | taxCheck || dateCheck;
+      const hasPassed = fullnameCheck && taxCheck && dateCheck;
 
       return hasPassed ? record : null;
     })

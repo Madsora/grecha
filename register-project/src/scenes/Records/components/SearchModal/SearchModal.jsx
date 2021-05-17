@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import {
   UserFieldToLabel,
   RecordSearchField,
@@ -9,10 +10,15 @@ import { Button, Modal } from "react-bootstrap";
 import styles from "./styles.module.scss";
 
 const SearchModal = ({ onHide, isShow, filters, setFilters }) => {
+  const [localFilters, setLocalFilters] = useState(filters);
+  useEffect(() => {
+    setLocalFilters(filters);
+  }, [filters]);
+
   const changeFormStateFromDate = (e) => {
     const { name, valueAsDate } = e.target;
-    setFilters({
-      ...filters,
+    setLocalFilters({
+      ...localFilters,
       [name]: valueAsDate,
     });
   };
@@ -20,8 +26,8 @@ const SearchModal = ({ onHide, isShow, filters, setFilters }) => {
   const changeFormState = (e) => {
     const { name, value } = e.target;
 
-    setFilters({
-      ...filters,
+    setLocalFilters({
+      ...localFilters,
       [name]: value,
     });
   };
@@ -35,7 +41,7 @@ const SearchModal = ({ onHide, isShow, filters, setFilters }) => {
         type="text"
         name={fieldname}
         id={fieldname}
-        value={filters[fieldname] ?? ""}
+        value={localFilters[fieldname] ?? ""}
         onChange={changeFormState}
       />
     </div>
@@ -50,11 +56,16 @@ const SearchModal = ({ onHide, isShow, filters, setFilters }) => {
         type="date"
         name={fieldname}
         id={fieldname}
-        value={filters[fieldname]?.toISOString().substring(0, 10) ?? ""}
+        value={localFilters[fieldname]?.toISOString().substring(0, 10) ?? ""}
         onChange={changeFormStateFromDate}
       />
     </div>
   );
+
+  const handleHide = () => {
+    setFilters(localFilters);
+    onHide();
+  };
 
   return (
     <Modal
@@ -62,6 +73,7 @@ const SearchModal = ({ onHide, isShow, filters, setFilters }) => {
       aria-labelledby="contained-modal-title-vcenter"
       centered
       show={isShow}
+      onHide={handleHide}
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
@@ -74,7 +86,7 @@ const SearchModal = ({ onHide, isShow, filters, setFilters }) => {
         {createDateInput(UserObligatoryField.dateOfBirth)}
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={onHide}>Закрити</Button>
+        <Button onClick={handleHide}>Закрити</Button>
       </Modal.Footer>
     </Modal>
   );

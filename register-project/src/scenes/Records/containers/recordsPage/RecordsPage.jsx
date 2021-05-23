@@ -32,9 +32,8 @@ const RecordsPage = () => {
 
       const taxCheck =
         !filters[UserObligatoryField.taxNumber] ||
-        record[UserObligatoryField.taxNumber].includes(
-          filters[UserObligatoryField.taxNumber]
-        );
+        record[UserObligatoryField.taxNumber] ==
+          filters[UserObligatoryField.taxNumber];
 
       const dateCheck =
         !filters[UserObligatoryField.dateOfBirth] ||
@@ -52,7 +51,7 @@ const RecordsPage = () => {
     .filter((r) => r);
 
   const isHideData = !Object.values(filters).some((f) => f);
-
+  console.log(filteredRecords);
   return (
     <div className={styles["page-wrp"]}>
       <div className={styles.buttonsWrapper}>

@@ -27,22 +27,29 @@ const AuthContext = React.createContext({
 const useAuthContext = () => useContext(AuthContext);
 
 const useProvideAuthContext = () => {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(
+    JSON.parse(localStorage.getItem("user")) || null
+  );
   const [usersData, setUsersData] = useState(usersInitialData);
 
   const addUser = (data) => {
-    data.role = "registrator";
-    setUsersData([...usersData, data]);
+    setUsersData([...usersData, { ...data, role: "registrator" }]);
   };
 
   const removeCurrentUser = () => {
+    localStorage.removeItem("user");
     setCurrentUser(null);
+  };
+
+  const setUser = (user) => {
+    localStorage.setItem("user", JSON.stringify(user));
+    setCurrentUser(user);
   };
 
   return {
     currentUser,
     usersData,
-    setCurrentUser,
+    setCurrentUser: setUser,
     addUser,
     removeCurrentUser,
   };

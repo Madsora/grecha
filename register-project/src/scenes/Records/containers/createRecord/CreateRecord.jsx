@@ -38,11 +38,17 @@ const CreateRecord = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const areEmptyFields = Object.values(UserObligatoryField).some(
-      (obligatoryField) =>
-        !formState[obligatoryField] &&
-        obligatoryField !== UserObligatoryField.id
+      (obligatoryField) => {
+        console.log(obligatoryField);
+        console.log(isValid(obligatoryField, formState[obligatoryField]));
+        return (
+          isValid(obligatoryField, formState[obligatoryField]) &&
+          obligatoryField !== UserObligatoryField.id
+        );
+      }
     );
 
+    console.log(areEmptyFields);
     if (areEmptyFields) {
       setShowError(true);
       return;
@@ -58,9 +64,9 @@ const CreateRecord = () => {
     history.push(`/records`);
   };
 
-  const errorLabel = () => (
-    <span className={styles.errorLabel}>Це поле обов'язкове</span>
-  );
+  // const errorLabel = () => (
+  //   <span className={styles.errorLabel}>Це поле обов'язкове</span>
+  // );
 
   const createTextInput = (fieldname) => (
     <div className={styles.inputWrapper} key={fieldname}>
@@ -75,9 +81,8 @@ const CreateRecord = () => {
         onChange={changeFormState}
       />
       {isShowError &&
-        !formState[fieldname] &&
         Object.values(UserObligatoryField).includes(fieldname) &&
-        errorLabel()}
+        isValid(fieldname, formState[fieldname])}
     </div>
   );
 
@@ -96,7 +101,7 @@ const CreateRecord = () => {
       {isShowError &&
         !formState[fieldname]?.toISOString().substring(0, 10) &&
         Object.values(UserObligatoryField).includes(fieldname) &&
-        errorLabel()}
+        isValid(fieldname, formState[fieldname])}
     </div>
   );
 
@@ -147,6 +152,54 @@ const CreateRecord = () => {
         return createTextInput(fieldName);
       }
     );
+
+  const isValid = (fieldname, value) => {
+    let errMessage = "";
+    if (!value) {
+      errMessage = `Це поле обов'язкове`;
+    } else {
+      switch (fieldname) {
+        case UserObligatoryField.fullName:
+          {
+            if (value.length < 6 || !value.includes(" ")) {
+              errMessage = `Має містити ім'я та прізвище`;
+            } else {
+              return null;
+            }
+          }
+          break;
+        case UserObligatoryField.dateOfCertifying:
+        case UserObligatoryField.dateOfBirth:
+        case UserObligatoryField.recordType:
+          return null;
+          break;
+        case UserObligatoryField.taxNumber:
+          {
+            if (value.length !== 10) {
+              errMessage = `Ідентифікаційний код має містити 10 символів`;
+            } else {
+              return null;
+            }
+          }
+          break;
+        case UserObligatoryField.placeOfCertifying:
+        case UserObligatoryField.placeOfLiving:
+        case UserObligatoryField.placeOfStorage:
+          {
+            if (!value.length) {
+              errMessage = `Це поле обов'язкове`;
+            } else {
+              return null;
+            }
+          }
+          break;
+        default:
+          errMessage = `Це поле обов'язкове`;
+      }
+    }
+
+    return <span className={styles.errorLabel}>{errMessage}</span>;
+  };
 
   return (
     <form className={styles.formWrapper} onSubmit={handleSubmit}>

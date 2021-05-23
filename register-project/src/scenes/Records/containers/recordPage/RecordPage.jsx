@@ -17,7 +17,7 @@ const MOCK_LOADING_TIME = 1000;
 
 const RecordPage = () => {
   const { id } = useParams();
-  let history = useHistory()
+  let history = useHistory();
   const { recordsData } = useRecordsContext();
   const record = recordsData[id];
 
@@ -64,7 +64,8 @@ const RecordPage = () => {
   const handleSubmit = () => {
     const areEmptyFields = Object.values(UserObligatoryField).some(
       (obligatoryField) =>
-        !tmpState[obligatoryField] && obligatoryField !== UserObligatoryField.id
+        isValid(obligatoryField, tmpState[obligatoryField]) &&
+        obligatoryField !== UserObligatoryField.id
     );
 
     if (areEmptyFields) {
@@ -92,8 +93,13 @@ const RecordPage = () => {
       (record[UserField.recordType] !== RecordType.AGREEMENT ||
         record[UserField.recordType] !== RecordType.COUPLE_AGREEMENT);
 
+    const shouldIgnoreId = fieldName === UserField.id;
+
     const shouldHideField =
-      shouldHideBirthCountry || shouldHideCertifier || !record[fieldName];
+      shouldHideBirthCountry ||
+      shouldHideCertifier ||
+      !record[fieldName] ||
+      shouldIgnoreId;
 
     if (isDateValue) {
       value = record[fieldName]?.toLocaleDateString();
@@ -126,10 +132,6 @@ const RecordPage = () => {
         : renderField(optionalFieldName)
     );
 
-  const errorLabel = () => (
-    <span className={styles.errorLabel}>Це поле обов'язкове</span>
-  );
-
   const createTextInput = (fieldname) => (
     <div className={styles.inputWrapper} key={fieldname}>
       <label className={styles.label} htmlFor={fieldname}>
@@ -143,9 +145,8 @@ const RecordPage = () => {
         onChange={changeTmpState}
       />
       {isShowError &&
-        !tmpState[fieldname] &&
         Object.values(UserObligatoryField).includes(fieldname) &&
-        errorLabel()}
+        isValid(fieldname, tmpState[fieldname])}
     </div>
   );
 
@@ -164,7 +165,7 @@ const RecordPage = () => {
       {isShowError &&
         !tmpState[fieldname]?.toISOString().substring(0, 10) &&
         Object.values(UserObligatoryField).includes(fieldname) &&
-        errorLabel()}
+        isValid(fieldname, tmpState[fieldname])}
     </div>
   );
 
@@ -214,6 +215,54 @@ const RecordPage = () => {
     return createTextInput(fieldName);
   };
 
+  const isValid = (fieldname, value) => {
+    let errMessage = "";
+    if (!value) {
+      errMessage = `Це поле обов'язкове`;
+    } else {
+      switch (fieldname) {
+        case UserObligatoryField.fullName:
+          {
+            if (value.length < 6 || !value.includes(" ")) {
+              errMessage = `Має містити ім'я та прізвище`;
+            } else {
+              return null;
+            }
+          }
+          break;
+        case UserObligatoryField.dateOfCertifying:
+        case UserObligatoryField.dateOfBirth:
+        case UserObligatoryField.recordType:
+          return null;
+          break;
+        case UserObligatoryField.taxNumber:
+          {
+            if (value.length !== 10) {
+              errMessage = `Ідентифікаційний код має містити 10 символів`;
+            } else {
+              return null;
+            }
+          }
+          break;
+        case UserObligatoryField.placeOfCertifying:
+        case UserObligatoryField.placeOfLiving:
+        case UserObligatoryField.placeOfStorage:
+          {
+            if (!value.length) {
+              errMessage = `Це поле обов'язкове`;
+            } else {
+              return null;
+            }
+          }
+          break;
+        default:
+          errMessage = `Це поле обов'язкове`;
+      }
+    }
+
+    return <span className={styles.errorLabel}>{errMessage}</span>;
+  };
+
   return (
     <div className={styles.pageContent}>
       <h2 className={styles.recordHeader}>Основні відомості</h2>
@@ -238,7 +287,10 @@ const RecordPage = () => {
               Змінити дані
             </Button>
 
-            <Button variant="secondary" onClick={() => history.push("/records/")}>
+            <Button
+              variant="secondary"
+              onClick={() => history.push("/records/")}
+            >
               Назад
             </Button>
           </>

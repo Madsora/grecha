@@ -26,8 +26,8 @@ const Header = () => {
     >
       <Navbar.Brand className="p-0">ДЕРЖАВНИЙ СПАДКОВИЙ РЕЄСТР</Navbar.Brand>
       <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
-        {currentUser && (
-          <Nav>
+        <Nav>
+          {currentUser && currentUser.role !== "admin" && (
             <Button
               onClick={handleAddRecord}
               className="mr-2"
@@ -35,11 +35,13 @@ const Header = () => {
             >
               Додати відомість
             </Button>
+          )}
+          {currentUser && (
             <Button onClick={handleLogOut} variant="primary">
               Вийти
             </Button>
-          </Nav>
-        )}
+          )}
+        </Nav>
       </Navbar.Collapse>
     </Navbar>
   );

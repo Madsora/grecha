@@ -13,7 +13,7 @@ const AuthWrapper = ({ children, role, fallback }) => {
   }
 
   if (currentUser.role !== role) {
-    console.log("no role");
+    console.log("no role", role);
 
     history.push(fallback);
     return null;
